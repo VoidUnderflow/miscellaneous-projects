@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reveal.js Presentation</title>
+    <!-- Reveal core CSS and a dark theme from local node_modules -->
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/black.css" />
+    <style>
+      /* Center all headings */
+      h1,
+      h2,
+      h3 {
+        text-align: center;
+        margin-top: 0.5em;
+      }
+      /* Two-column layout using flexbox */
+      .container {
+        display: flex;
+        justify-content: center;
+        gap: 2em;
+      }
+      .col {
+        flex: 1;
+        list-style: disc inside;
+        margin: 0;
+        padding: 0 1em;
+        text-align: left;
+      }
+      /* Center images and iframes with captions */
+      img,
+      iframe {
+        display: block;
+        margin: 0.5em auto;
+      }
+      .caption {
+        text-align: center;
+        font-style: italic;
+        margin-top: 0.5em;
+      }
+      /* Video container for centering */
+      .video-container {
+        text-align: center;
+      }
+      /* Scrollable text box */
+      .scroll-box {
+        max-height: 200px;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1em;
+        border: 1px solid #555;
+        border-radius: 4px;
+        margin: 1em;
+      }
+      /* Slide number styling (optional) */
+      .reveal .slide-number {
+        color: #ccc;
+      }
+      .center-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Title Slide -->
+        <section>
+          <h1>My Reveal.js Presentation</h1>
+          <h3>Converted from Marp &ndash; All locally served</h3>
+        </section>
+
+        <!-- Two-Column List Slide -->
+        <section>
+          <h2>Two-Column List</h2>
+          <div class="container">
+            <ul class="col">
+              <li>Apples</li>
+              <li>Bananas</li>
+              <li>Cherries</li>
+            </ul>
+            <ul class="col">
+              <li>Dogs</li>
+              <li>Cats</li>
+              <li>Hamsters</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Image with Caption Slide -->
+        <section>
+          <h2>Local Image with Caption</h2>
+          <div class="center-container">
+            <img src="assets/sample-image.jpg" alt="Sample Image" width="400" />
+            <p class="caption">Figure: A sample local image (centered)</p>
+          </div>
+        </section>
+
+        <!-- Embedded YouTube Video Slide -->
+        <section>
+          <h2>Embedded YouTube Video</h2>
+          <div class="video-container">
+            <iframe
+              width="640"
+              height="360"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                  gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+          <p class="caption">Video: Rick Astley – Never Gonna Give You Up</p>
+        </section>
+
+        <!-- Syntax-Highlighted Code Slide -->
+        <section>
+          <h2>JavaScript Quicksort Example</h2>
+          <pre><code class="language-javascript">
+// JavaScript QuickSort algorithm
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+  const pivot = arr[0];
+  const left = [], right = [];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) left.push(arr[i]);
+    else right.push(arr[i]);
+  }
+  return quickSort(left).concat(pivot, quickSort(right));
+}
+console.log(quickSort([3, 6, 1, 8, 2, 5]));  // Example usage
+        </code></pre>
+        </section>
+
+        <!-- Scrollable Text Box Slide -->
+        <section>
+          <h2>Scrollable Text Box</h2>
+          <div class="scroll-box">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              imperdiet, nulla et dictum interdum, nisi lorem egestas odio,
+              vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est,
+              ultrices nec congue eget, auctor vitae massa. Fusce luctus
+              vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed
+              ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis
+              imperdiet sed ornare turpis.
+            </p>
+            <p>
+              Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum
+              fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit
+              mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse
+              in orci enim.
+            </p>
+            <p>
+              Donec sit amet nibh nec orci aliquet suscipit. Nam mattis, felis
+              ut feugiat consequat, odio enim porta nisi, ut aliquam massa nisl
+              quis neque. Integer viverra, dui vel mattis viverra, erat nulla
+              interdum elit, ac laoreet tellus erat nec purus.
+            </p>
+          </div>
+        </section>
+
+        <!-- Animated GIF Slide -->
+        <section>
+          <h2>Animated GIF Example</h2>
+          <img src="assets/animation.gif" alt="Funny Animation" width="400" />
+          <p class="caption">Figure: A humorous animated GIF (centered)</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Reveal.js core and plugin scripts from local node_modules -->
+    <script src="node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+      // Initialize Reveal.js with desired configuration
+      Reveal.initialize({
+        center: false, // Top-align slides (no vertical centering)
+        slideNumber: "c/t", // Show "current/total" slide numbers:contentReference[oaicite:9]{index=9}
+        plugins: [RevealHighlight], // Enable syntax highlighting plugin:contentReference[oaicite:10]{index=10}
+      });
+    </script>
+  </body>
+</html>
