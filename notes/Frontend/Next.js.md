@@ -71,4 +71,11 @@ Never re-fetches backend data used to build the pages by default => you need to 
 
 The ESLint extension in VSCode watches all the files in node_modules by default, hitting the limit of files you can watch on Ubuntu (65536).
 
+#### Streaming
+[Tutorial source](https://www.freecodecamp.org/news/the-nextjs-15-streaming-handbook/)
+- Can start rendering the component tree on the server. Whenever a boundary is encountered (maybe implicitly through `loading.js`) React can pause, flush HTML + stream it to the browser.
+- Automatic streaming -> by creating a `loading.js` file alongside a route  / layout segment. Next.js detects it -> renders skeleton + streams rest of page as data becomes available.
+- Manual streaming -> wrap specific parts of the UI. Those segments will stream independently. (yay, another wrapper!).
+- React automatically knows which chunks correspond to which components => hydrate incrementally.
+
 
