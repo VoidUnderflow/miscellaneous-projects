@@ -78,4 +78,22 @@ The ESLint extension in VSCode watches all the files in node_modules by default,
 - Manual streaming -> wrap specific parts of the UI. Those segments will stream independently. (yay, another wrapper!).
 - React automatically knows which chunks correspond to which components => hydrate incrementally.
 
+Have to be careful about false interactions with SSR (server-side rendering) = reverting a user's action because it had no effect anyway.
+
+Lifecycle (no streaming):
+1. SSR = server runs React code, produces HTML with the initial data baked in -> server sends HTML + JS bundle to the browser. 
+2. Browser parses HTML into the DOM. Page is visible, but not interactive.
+3. Hydration -> the JS bundle is loaded -> React parses the DOM, matches it with its virtual DOM structure and attaches event listeners => page is interactive.
+4. Client re-renders as normal on appropriate state changes.
+
+With streaming, the server streams HTML chunks + React can hydrate them as they come.
+Relevant: https://react.dev/reference/react/Suspense
+
+How to actually do streaming:
+- Create a loading.js file next to the page.js. This makes page.js be automatically wrapped in a Suspense boundary. Then you can replicate page.js in loading.js, replacing the elements you'll stream with placeholders like Skeleton (https://ui.shadcn.com/docs/components/skeleton). No granularity with this approach, but can show a placeholder page.
+- Manually: You wrap things in Suspense, fallback = Skeleton for each component.
+
+
+
+
 
