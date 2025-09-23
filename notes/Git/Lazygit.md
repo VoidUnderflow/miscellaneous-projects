@@ -4,3 +4,8 @@ Files panel -> `Space` to stage/unstage.
 
 ### Push
 Commits panel -> `P`
+
+### Branching
+`b` = branches panel
+`n` = create new branch
+
