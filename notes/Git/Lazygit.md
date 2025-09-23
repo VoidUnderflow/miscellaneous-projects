@@ -9,3 +9,9 @@ Commits panel -> `P`
 `b` = branches panel
 `n` = create new branch
 
+### Merging
+`f` = fetch from remote
+Go to branch panel
+Highlight master
+`M` = merge master into your current branch
+`e` = on a merge conflict to open it in your editor
