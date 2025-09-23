@@ -6,12 +6,22 @@ Files panel -> `Space` to stage/unstage.
 Commits panel -> `P`
 
 ### Branching
-`b` = branches panel
+
+Branch panel
 `n` = create new branch
 
 ### Merging
+
 `f` = fetch from remote
 Go to branch panel
 Highlight master
 `M` = merge master into your current branch
 `e` = on a merge conflict to open it in your editor
+
+### Switch branch
+
+Branch panel -> select branch -> `Space`
+
+### Navigating around panels
+
+`0, 1, 2, 3, 4, 5` - D'OH!
