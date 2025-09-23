@@ -4,3 +4,6 @@ Files panel -> `Space` to stage/unstage.
 
 ### Push
 Commits panel -> `P`
+
+### Switch branch
+Branch panel -> select branch -> `Space`
