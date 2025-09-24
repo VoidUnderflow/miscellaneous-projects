@@ -3,11 +3,50 @@
 `find . -name file_name -exec rm -r {} \;`
 Add `-mindepth 2` to ignore the folder in the current directory.
 
-Use the `tree` command to visually display a folder's structure.
+## File System Navigation
+Detailed ls:
+`ls -la`
 
-### Navigating ###
-`cd -` : return to the previous folder you were in
-`cd //`: go to root folder
+Go to prev dir:
+`cd -`
+
+Show folder as tree:
+`tree`
+
+## File Operations
+Copy file:
+`cp file1 file2`
+
+Copy directory:
+`cp -r dir1 dir2`
+
+Move / rename file:
+`mv file1 file2`
+
+Delete file:
+`rm file.txt` 
+
+Delete directory:
+`rm -r dir`
+
+Create empty file:
+`touch file.txt
+`
+Create directory (nested):
+`mkdir -p dir/subdir`
+
+## SSH & SCP
+Connect to remote:
+`ssh user@host`
+
+Connect with identity file:
+`ssh -i key.pem user@host`
+
+Copy from remote to local:
+`scp user@host:/dir/file .`
+
+Sync files:
+`rsync -avz src/ user@host:/dir`
 
 ### Ubuntu version
 `lsb_release -a`
