@@ -48,6 +48,55 @@ Copy from remote to local:
 Sync files:
 `rsync -avz src/ user@host:/dir`
 
+## Search
+Find file by name:
+`find . -name "*.txt" `
+
+Search inside file:
+`grep "pattern" file.txt`  
+
+Recursive search inside folder:
+`grep -r "pattern" dir/  `
+
+Case-insensitive search:
+`grep -i "pattern" file.txt`
+
+## Text Processing
+First 10 lines in a file:
+`head -n 10 file.txt`
+
+Last 10 lines in a file:
+`tail -n 10 file.txt`
+
+Line count:
+`wc -l file.txt`
+
+## Redirects
+Redirect + overwrite:
+`command > out.txt` 
+
+Redirect + append:
+`command >> out.txt`
+
+Redirect stderr:
+`command 2> err.txt `
+
+Redirect stdout + stderr:
+`command &> all.txt`
+
+## Complex Redirects
+Redirect stderr and pipe stdout:  
+`ls -la 2> errors.txt | less`  
+
+Redirect stdout and stderr separately:  
+`command > out.txt 2> err.txt`  
+
+Redirect stdout and stderr together:  
+`command > out.txt 2>&1`  
+
+Use with pipes for advanced behavior:  
+`command1 2> err.txt | command2 > out.txt`  
+
 ### Ubuntu version
 `lsb_release -a`
 
