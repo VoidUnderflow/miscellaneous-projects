@@ -12,6 +12,67 @@ Source: https://vim-adventures.com/
 `b` = go to the beginning of prev word
 `B` = go to the beginning of the prev WORD (space delimiters(?))
 
-### Actions
+`$` = end of line
+`0` = beginning of line
+
+## Vimtutor
+### Insert / append
+`i` = insert here
+`o` = insert line below + enter insert mode
+`A` = insert at the end of the line
+
+### Delete
 `x` = delete char on cursor
-`2x` = delete next two char on cursor
+`dw` = delete next word
+`d$` = delete from here to the end of the line
+`d2w` = delete next two words
+`dd` = delete whole line
+
+### Command = operator + number + motion (e.g: operator: `d`, motion: `$`)
+
+### Undo / Redo
+`u` = redo previous operation
+`U` = undo all previous operations on the current line
+`C-r`= redo
+
+### Put
+`p` = puts previously deleted text after the cursor
+
+### Yank (Copy)
+`y` = copy text, can combine with `v`
+`yw` = yank next word
+`yy` = yank line
+
+### Replace
+`r` = replaces the character at cursor with whatever you type in next
+`R` = some sort of interactive replace
+
+### Change
+`c` = edit stuff
+`ce` = edit the rest of the word
+`cc` = edit the whole line
+
+### File meta
+`C-g` = location in file + file status
+`G` = move to the bottom of the file
+`gg` = move to start of the file
+`22G` = move to line 22
+
+`/` = search for phrase
+`n` = move to next match
+`N` = move to previous match
+
+`%` = find matching `), ], }`
+`:s/thee/the` = replaces first occurrence of `thee` in line with `the;
+`:s/thee/the/g` = replaces all occurrences in line;
+`:%s/old/new/g` = replaces all occurrences in file;
+`:%s/old/new/gc` = replaces all occurrences, but prompts user whether to substitute or not;
+
+
+
+
+
+
+
+
+
