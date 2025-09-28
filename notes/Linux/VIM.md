@@ -68,6 +68,10 @@ Source: https://vim-adventures.com/
 `:%s/old/new/g` = replaces all occurrences in file;
 `:%s/old/new/gc` = replaces all occurrences, but prompts user whether to substitute or not;
 
+Regexp + very magic mode + replace all repeated words:
+`:%s/\v(\w+)\s+\1/\1/gc`
+Without the g, you would remove only the first occurrence on each line.
+
 
 
 
