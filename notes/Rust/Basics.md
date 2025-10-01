@@ -314,29 +314,60 @@ fn return_a_string() -> &String {
 ```
 `s_ref` would be invalidated on function return
 
-Final chapter exercise (assume give_and_take doesn't automatically produce a compiler error)
-Error
+### Fixing ownership errors
 ```rust
-let v = vec![1, 2, 3]; // v has RWO
-let n = &v[0]; // n gets R on v[0]
-give_and_take(&v, 4); // potentially reallocates vector, n will point to possibly invalid data or memory
-println!("{}", n);
+fn return_a_string() -> &String {
+    let s = String::from("Hello world");
+    &s
+}
+```
+Return reference to something that's scoped inside the function => bad.
+1. Just return the thing, replace `&s` by `s`.
+2. Return the string itself (`&'static str`). `'static` = lifetime that lasts the entire program;
+3. ```rust
+use std::rc::Rc;
+fn return_a_string() -> Rc<String> {
+    let s = Rc::new(String::from("Hello world"));
+    Rc::clone(&s)
+}
+```
+You increment refcount of the data.
+4. Caller provides slot to put the string in using a mutable reference.
+```rust
+fn return_a_string(output: &mut String) {
+    output.replace_range(.., "Hello world");
+}
 ```
 
-Would work:
-```rust
-let v = vec![1, 2, 3]; // v has RWO
-let n = &v[0]; // n gets R on v[0], then is immediately dropped since it's not used afterwards
-let k = give_and_take(&v, 4); // no longer the issue above
-println!("{}", k);
-```
 
-Would work:
+**There are cases in which safe programs can be marked as unsafe.**
+### Structs
+Just normal stuff, `struct User {...}` -> `User {...}`
+Entire struct must be mutable (no fine-grained control).
+Update struct pattern:
 ```rust
-let v = vec![1, 2, 3]; // v has RWO
-let v2 = &v; // v2 borrows v immutably => v has R permission on vector v loses W
-give_and_take(&v, 4);
-println!("{}", v2[0]);
+    let user2 = User {
+        email: String::from("another@example.com"),
+        ..user1
+    };
 ```
+Tuple struct:
+```rust
+struct Color(i32, i32, i32);
+```
+Unit struct:
+```rust
+struct AlwaysEqual;
+```
+Implementing struct methods with `impl`:
+```rust
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+```
+If you omit self, you can have something like `fn Square(size: u32) -> Self`, called with `Rectangle::square(20)`.
 
-Whole exercise kinda sucks. Unnecessarily confusing - "ignore what you just learned, what would happen here?" I hate this kind of exercises.
+Enums, `Some(val)`, `Option<i32>`, `None`.
+Vectors, hashmaps, traits.
