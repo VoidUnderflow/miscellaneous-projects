@@ -29,7 +29,11 @@ Really useful for quickly deleting things, e.g: `dt)` or `dt"` then `d;` or `d,`
 ## Vimtutor
 ### Insert / append
 `i` = insert here
+`I` = insert at the start of the line
+
 `o` = insert line below + enter insert mode
+
+`a` = insert after current character
 `A` = insert at the end of the line
 
 ### Delete
