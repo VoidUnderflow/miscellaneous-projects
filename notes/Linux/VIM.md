@@ -15,6 +15,17 @@ Source: https://vim-adventures.com/
 `$` = end of line
 `0` = beginning of line
 
+`f` = Move to next occurrence of the following character, on the same line.
+`F` = Move to previous..
+
+`t` = same as `f`, stops before the next occurrence
+`T` = same as `F`, ...
+
+`;` = repeat last `f, F, T, t` in the same direction
+`,` = repeat last ... in the opposite direction;
+
+Really useful for quickly deleting things, e.g: `dt)` or `dt"` then `d;` or `d,`
+
 ## Vimtutor
 ### Insert / append
 `i` = insert here
