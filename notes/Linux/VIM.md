@@ -26,6 +26,13 @@ Source: https://vim-adventures.com/
 
 Really useful for quickly deleting things, e.g: `dt)` or `dt"` then `d;` or `d,`
 
+`H` = move to top of screen
+`M` = move to middle of screen
+`L` = move to bottom of screen
+
+`{` = previous paragraph
+`}` = next paragraph
+
 ## Vimtutor
 ### Insert / append
 `i` = insert here
