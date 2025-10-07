@@ -30,20 +30,11 @@ mod my_module {
     pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> { 
         let mut ans :Vec<String> = Vec::new();
 
-        for tuple in input {
-            match tuple.1 {
-                Command::Uppercase => {
-                    ans.push(tuple.0.to_uppercase());
-                },
-                Command::Trim => {
-                    let trimmed = String::from(tuple.0.trim());
-                    ans.push(trimmed);
-                },
-                Command::Append(val) => {
-                    let mut barred = tuple.0.clone();
-                    barred.push_str(&String::from("bar").repeat(val));
-                    ans.push(barred)
-                }
+        for (string, command) in input {
+            match command {
+                Command::Uppercase => ans.push(string.to_uppercase()),
+                Command::Trim => ans.push(string.trim().to_string()), 
+                Command::Append(val) => ans.push(string + &"bar".repeat(val)) 
             }
         }
         ans
