@@ -31,3 +31,6 @@ Go to commit window -> Ctrl+S -> Search pattern -> Voila!
 
 ### Searching for patterns in different views
 `/` , that's it, similar to vim
+
+### Bisect
+Press `b` in the commit window.
