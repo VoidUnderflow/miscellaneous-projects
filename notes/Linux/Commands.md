@@ -100,6 +100,9 @@ Use with pipes for advanced behavior:
 ### Ubuntu version
 `lsb_release -a`
 
+### Btop
+:O
+
 ### Misc
 Long pwd -> `export PS1='> '`
 
