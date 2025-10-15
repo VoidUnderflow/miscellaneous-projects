@@ -10,7 +10,7 @@ A repo with code from various tutorials, online courses, university assignments,
 - [**express_exploration**](/express_exploration/) - Basic REST API with Express.
 - [**electron_exploration**](/electron_exploration/) - Some very simple Electron apps.
 - [**nginx_exploration**](/nginx_exploration/) - Doing the official Nginx tutorial / workshop.
-- [**rust_exploration**](/rust_exploration/) - Solutions to the Rustlings exercises + wasm Game of Life tutorial.
+- [**rust_exploration**](/rust_exploration/) - Solutions to the Rustlings exercises + ~~wasm Game of Life tutorial.~~ (outdated, no longer maintained)
 
 ### Miscellaneous
 
