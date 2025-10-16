@@ -65,7 +65,8 @@ Case-insensitive search:
 First 10 lines in a file:
 `head -n 10 file.txt`
 
-Last 10 lines in a file:
+Last 10 lines in a file.
+Useful for a log file that's getting stuff appended to it live.
 `tail -n 10 file.txt`
 
 Line count:
