@@ -34,50 +34,95 @@ Status endpoint: `curl http://localhost:9000/basic_status`
 
 ## Nginx basics workshop
 ### Lab 2
-`$uri` = variable that returns the request URI path;
-Other special variables: `$remote_addr, $server_addr, $upstream_addr, $connection, $scheme, $host, $request, $args, $request_method, $http_user_agent, $request_id, $time_local, $nginx_version, $pid`
-
-How to declare different routes with `location /tea {}`
-
-Controlling what location you get with the Host header (in curl at least).
-
-Directory browsing:
+Very simple http block:
 ```nginx
-    location /browse {                   # new URL path
-    
-        alias /usr/share/nginx/html;     # Browse this folder
-        index index.html;                # Use this file, but if it does *not* exist
-        autoindex on;                    # Perform directory/file browsing
+http {
+    server {
+        listen 80;
+        server_name www.example.com;
+        
+        location /application1 {
+            index index.html;
+        }
     }
+}
+```
+`http{}` = HTTP context aka how to handle HTTP traffic; Alternatives: `events, stream, mail`. `events, http` most common;
+`server{}` = server block, defines one "virtual host" = set of rules for handling requests to a particular domain or IP;
+`listen 80` -> pretty clear;
+`server_name` -> domain name that the server block will respond to;
+`location /application1` -> defines a route I guess? + what to serve (`index.html`).
+
+Example events block:
+```nginx
+events {
+	worker_connections 1024;
+	multi_accept on;
+	use epoll;
+}
+```
+- `worker_connections` = how many simultaneous connections each worker process can handle;
+- `multi-accept on;` = when true, each worker process will accept as many new connections as possible in one go instead of one at a time;
+- `use epoll` = which I/O event method to use;
+
+Some typical Nginx commands:
+`nginx -v` = version details
+`nginx -s quit` = graceful shutdown
+`nginx -s stop` = terminates all Nginx processes (presumably ungracefully?)
+`nginx -s reload` = reloads Nginx with new configuration
+`nginx -t` = test configuration syntax + files
+`nginx -T` = print current running configurations
+
+By default, Nginx Master will create a Worker process for every CPU core.
+
+Nginx configs:
+- Contexts (as above, `http`, `events`, etc);
+- Includes = additional files that Nginx should use for configuration;
+- Directives = simple or block;
+
+Another example:
+```nginx
+server {
+    listen       80;
+    server_name  localhost;         
+
+    access_log  /var/log/nginx/localhost.access.log  main;
+
+    location / {                         
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    location /images/ {
+        root   /data;
+    }
+)
 ```
 
-Two main types of logs to have in mind:
-- error.log -> contains NGINX binary start/stop/reload messages, NGINX version and binary details, networking | configuration | linux system errors;
-- access.log -> where the HTTP request/response metadata is recorded; best practice to have separate access logs for each website/server block;
-  
-Example access log format config:
-```nginx
-log_format main_ext 'remote_addr="$remote_addr", '
+Contexts + block follow the construction of an HTTP URL:
+- `main` + `events` = nginx startup parameters;
+- `http` = high level http params: logging, data types, timers, include files;
+- `server` = virtual server params: listen port, hostname, access log, include files;
+- `location` = URL path + object type;
+e.g: `http://www.example.com:8080/images/smile.png` -> `schema://hostname:port/uri/object.type`;
 
-					'[time_local=$time_local], '
-					
-					'request="$request", '
-					
-					'status="$status", '
-					
-					'http_referer="$http_referer", '
-					
-					'body_bytes_sent="$body_bytes_sent", '
-					
-					'Host="$host", '
-					
-					'sn="$server_name", '
-					
-					'request_time=$request_time, '
-					
-					'http_user_agent="$http_user_agent", '
-					
-					'http_x_forwarded_for="$http_x_forwarded_for", '
-					
-					'request_length="$request_length", ';
+Example Linux file structure:
+```bash
+/etc # tree nginx
+nginx                             
+├── conf.d                        # http contexts
+│   ├── cafe.example.com.conf     # server and location contexts for each website
+│   ├── cars.example.com.conf
+│   ├── default.conf
+│   ├── stub_status.conf
+│   ├── www.example.com.conf
+│   └── www2.example.com.conf
+├── includes                      # Include other shared config files
+├── fastcgi.conf
+├── fastcgi_params
+├── mime.types
+├── modules -> /usr/lib/nginx/modules
+├── nginx.conf                    # main and events contexts
+├── scgi_params
+└── uwsgi_params
 ```
