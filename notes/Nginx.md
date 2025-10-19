@@ -126,3 +126,8 @@ nginx
 ├── scgi_params
 └── uwsgi_params
 ```
+Notes on host headers + host-based routing:
+- Can use same IP + port for multiple hostnames -> re-route by selecting the correct host.
+- `default_server` = last resort, when none of the hostnames match;
+- Remember `server_name directive`
+
