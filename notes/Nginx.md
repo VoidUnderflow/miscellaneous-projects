@@ -137,3 +137,33 @@ If using TLS v1.3, requests which use v1.2, v.1.1 will fail.
 
 Stub status module: https://nginx.org/en/docs/http/ngx_http_stub_status_module.html
 
+### Reverse proxy considerations
+Can add logs for each backend, `upstream_X`.
+
+`proxy_headers` -> so you don't lose info in the request or response;
+Additional info in Nginx variables.
+Term to remember: `adding custom HTTP headers`
+e.g:
+```nginx
+# client address in binary format
+proxy_set_header X-Real-IP $remote_addr;
+
+# X-Forwarded-For client request header 
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+# request scheme, “http” or “https”
+proxy_set_header X-Forwarded-Proto $scheme;
+```
+
+HTTP/1.1 -> new TCP conn for every request. 
+HTTP/1.1 for proxied requests -> re-use TCP conns for multiple requests (HTTP keepalives / pipelining)
+
+Term to remember: `keepalives`
+
+### Nginx persistence / affinity
+Once you map a client with a server via a load balancer, you might want to keep choosing that server for that particular client.
+
+`ip_hash`
+
+
+
