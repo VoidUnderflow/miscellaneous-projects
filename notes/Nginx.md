@@ -135,3 +135,5 @@ Security: `ssl_certificate`, `ssl_certificate_key` + can add security headers an
 
 If using TLS v1.3, requests which use v1.2, v.1.1 will fail.
 
+Stub status module: https://nginx.org/en/docs/http/ngx_http_stub_status_module.html
+
