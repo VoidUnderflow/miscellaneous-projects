@@ -131,3 +131,7 @@ Notes on host headers + host-based routing:
 - `default_server` = last resort, when none of the hostnames match;
 - Remember `server_name directive`
 
+Security: `ssl_certificate`, `ssl_certificate_key` + can add security headers and import them.
+
+If using TLS v1.3, requests which use v1.2, v.1.1 will fail.
+
