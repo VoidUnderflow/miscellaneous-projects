@@ -166,4 +166,16 @@ Once you map a client with a server via a load balancer, you might want to keep 
 `ip_hash`
 
 
+### Request coalescing
+Once a cache entry expires, don't want to hammer the server.
+`proxy_cache_lock on;` -> if there's already a request for a resource, others will wait
+If first request fails or times out (`proxy_cache_lock_timeout`), request will be allowed through.
+
+Two requests are considered to request the same cached resource if: `proxy_cache_key` is the same for both.
+
+E.g: `proxy_cache_key "$scehem$proxy_host$request_uri"`
+
+
+
+
 
