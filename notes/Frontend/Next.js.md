@@ -1,3 +1,15 @@
+### Project structure
+#### Top-level folders
+`app` = app router; legacy is `pages`
+`public` = static assets to be served
+`src` = optional application source folder
+
+#### Top-level files
+`next.config.js` = config for Next
+`package.json` = project deps and scripts
+`instrumentation.ts` = OpenTelemetry and Instrumentation file; stuff that runs before the app starts
+`proxy.ts` = Next.js request proxy
+
 ### Intro
 `npx create-next-app@latest`
 
