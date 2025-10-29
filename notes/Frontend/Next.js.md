@@ -9,14 +9,35 @@
 `package.json` = project deps and scripts
 `instrumentation.ts` = OpenTelemetry and Instrumentation file; stuff that runs before the app starts
 `proxy.ts` = Next.js request proxy
+`.env.local`, `.env.production` 
 
-### Intro
-`npx create-next-app@latest`
-
-NextJS is based on RSCs.
 Root app file reserved filenames:
 - `page.js` = defines a route + automatically becomes entry point for its folder;
-- `layout.js` = wraps pages in a persistent layout (for things like putting a navbar on every page)
+- `layout.js` = put shared UI elements here - header, nav, footer
+Example layout:
+```ts
+import './globals.css'
+
+export const metadata = {
+  title: 'My Next App',
+  description: 'Example with footer',
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="flex flex-col min-h-screen">
+        <main className="flex-1">
+          {children}
+        </main>
+        <footer className="bg-gray-800 text-white py-4 text-center">
+          © 2025 My Next App. All rights reserved.
+        </footer>
+      </body>
+    </html>
+  )
+}
+```
 - `icon.png` = will be used as a favicon;
 - `not-found.js, error.js, loading.js, route.js` etc..
 
