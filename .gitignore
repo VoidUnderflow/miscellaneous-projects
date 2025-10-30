@@ -154,3 +154,6 @@ graphql_exploration/strawberry_fast_api/app/user_header.txt
 graphql_exploration/strawberry_fast_api/.env.test
 graphql_exploration/strawberry_fast_api/app/.env.test
 nginx_exploration/nginx-basics-workshop/lab3/nginx-oss/etc/ssl/nginx/cars.example.com.key
+
+# Mystical clone
+mystical_exploration/mystical_ps/
