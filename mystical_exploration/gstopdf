@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use autodie;
+
+die "No files" if @ARGV == 0;
+
+foreach my $psfile (@ARGV) {
+    my ($basefile) = $psfile =~ /^(.*).ps$/ or die "Not a ps file: $psfile";
+    my $pdffile = $basefile . ".pdf";
+    system("gs", "-r720", "-dNOSAFER", "-dNOPAUSE", "-dNOEPS", 
+           "-sDEVICE=pdfwrite", "-sOutputFile=$pdffile", "-dBATCH", "$psfile");
+}

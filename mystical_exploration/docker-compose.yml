@@ -1,0 +1,9 @@
+services:
+  mystical:
+    build: .
+    volumes:
+      - ./mystical_ps:/workspace/mystical_ps
+      - ./output:/workspace/output
+    working_dir: /workspace/mystical_ps
+    stdin_open: true
+    tty: true
