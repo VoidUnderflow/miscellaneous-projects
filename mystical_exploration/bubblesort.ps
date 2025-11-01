@@ -1,0 +1,35 @@
+%!PS
+
+(dmmlib/base.ps) run
+(mystical.ps) run
+(dmmsigils.ps) run
+
+/bubblesort {
+    /arr arg
+    /n arr length def
+    /swapped true def
+    {
+        swapped not { exit } if
+        /swapped false def
+        0 1 n 2 sub {
+            /i exch def
+            arr i get
+            arr i 1 add get
+            gt {
+                /temp arr i get def
+                arr i arr i 1 add get put
+                arr i 1 add temp put
+                /swapped true def
+            } if
+        } for
+    } loop
+    arr
+} def
+
+%%EndProlog
+200 softscale
+7 7 translate
+
+/bubblesort mystical_evoke_label
+
+showpage
