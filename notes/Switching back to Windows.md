@@ -32,11 +32,23 @@
 		13. Todo Tree
 		14. Tokyo Night
 		15. VIM
-	6. Lazygit
-	7. Steam
-	8. Firefox
-	9. Brave
-	10. AV - Malwarebytes?
-	11. Discord
-	12. ProtonVPN
-	13. Obsidian
+	6. Steam
+	7. Firefox
+	8. Brave
+	9. AV - Malwarebytes?
+	10. Discord
+	11. ProtonVPN
+	12. Obsidian
+	13. LibreOffice
+	14. Nvidia GeForce Experience
+	15. Add Ctrl + Alt + T shortcut
+	16. Scoop:
+		1. Lazygit
+		2. Node
+		3. Python
+		4. Git
+		5. VIM
+		6. uvloop
+	17. Calibre
+	18. Foxit
+	19. MikTex
