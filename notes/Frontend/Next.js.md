@@ -1,108 +1,47 @@
-### Project structure
-#### Top-level folders
-`app` = app router; legacy is `pages`
-`public` = static assets to be served
-`src` = optional application source folder
+#### Project structure conventions(?)
+- `/app` = contains routes, components, logic;
+- `/app/lib` = functions used in the app; e.g: utility or data fetching functions;
+- `/app/ui` = UI components; e.g: cards, tables, forms;
+	- `globals.css`? interesting place to put it I guess. Needs to be imported in `/app/layout.tsx`
+- `/public` = static assets;
 
-#### Top-level files
-`next.config.js` = config for Next
-`package.json` = project deps and scripts
-`instrumentation.ts` = OpenTelemetry and Instrumentation file; stuff that runs before the app starts
-`proxy.ts` = Next.js request proxy
-`.env.local`, `.env.production` 
+I think I'm starting to become partial to keeping the `app` folder only for routes + layout.
 
-Root app file reserved filenames:
-- `page.js` = defines a route + automatically becomes entry point for its folder;
-- `layout.js` = put shared UI elements here - header, nav, footer
-Example layout:
+Then, separate `src` folder which can contain folders like `components`, `features`, `lib`, `hooks`, `styles`
+
+#### Fonts
+Can import fonts directly from Google, they will be automatically downloaded when building the site.
+
+e.g:
 ```ts
-import './globals.css'
-
-export const metadata = {
-  title: 'My Next App',
-  description: 'Example with footer',
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <main className="flex-1">
-          {children}
-        </main>
-        <footer className="bg-gray-800 text-white py-4 text-center">
-          © 2025 My Next App. All rights reserved.
-        </footer>
-      </body>
-    </html>
-  )
-}
+import {Inter} from 'next/font/google';
+export const inter = Inter({subsets: ['latin']});
 ```
-- `icon.png` = will be used as a favicon;
-- `not-found.js, error.js, loading.js, route.js` etc..
 
-Folder structure mirrors the routes that are created. Interesting approach, reduces boilerplate from react-router-dom, but I still prefer Django's approach of defining routes explicitly.
+Including it in body:
+```tsx
+<body className={`${inter.className} antialiased`}>{children}</body>
+```
 
-**Link** component to ... link to other components.
-Takes a bit of time to load the pages even for a small app.
+#### Images
+`<Image>` component:
+- prevents layout shift when images are loading
+- resizes images
+- lazy loading
 
-Naming a folder with `[slug]` for dynamic routing. However, you don't seem to be able to validate what type of slug it is, so you probably need to do it in the component?
+#### Routing
+Nested folders -> routes. Each folder === route segment
+`page.tsx` = required for the route to be accessible
+`layout.tsx` = UI that is shared between sub-pages; `children` prop can either be a page or another layout;
 
-To be fair, NextJS' error messages and error panel is on a whole different level.
+#### Navigation
+`<Link>`: key, href + can put something like an icon inside of it;
+Next prefetches the code for the linked route in the background => faster navigation.
 
-A folder is not treated as a route unless it contains `page.js | route.js | index.js`.
-
-Components in `error.js` must be a client component. It will be applied to sibling and descendant pages.
-
-Every page component receives a params prop (useful to retrieve path).
-
-#### Importing an image
-`import logoImg from "@/assets/logo.png";
-Use: logoImg.src`
-Also, use `<Image>` instead of `<img>` with next. Can lazy load images, automatically infers image dimensions + optimizes it (resize, compress, serving in webp). Also uses a CDN when deployed on Vercel (? automatically or if specified ?).
-
-For Image, can use fill attribute if you don't know image dimensions (e.g: uploaded by user).
-
-#### Using state
-Can only do on client components.
-Mark it as a client component with "use client".
-
-RSCs are better for SEO, less client-side JS.
-
-#### usePathname
-Get current path (useful for e.g: highlighting the nav bar).
-Is a hook, so can only be used in client components.
-
-#### Uploading form data
-I see the power of Django's ORM now.
-ORMs you can use with Next: Prisma - most popular, Mongoose - if using MongoDB.
-
-#### Validating uploaded images
-How?
-- MIME type from the file buffer
-- Magic numbers to verify file type.
-- Size limits.
-- Request limits -> timeouts.
-- Third party cloud storage -> offer built-in security checks (AWS S3 for instance).
-- Sanitizing filenames so attackers will have a harder time finding them.
-- Reject based on image dimensions (e.g: 1x1)
-- Could use `sharp` package to validate an image.
-
-Serving files uploaded by the user in production => use S3 or equivalent.
-**By default, Next only serves static assets present at build time.**
-
-#### Prod vs dev
-npm run build = pre-renders every page + caches them;
-Never re-fetches backend data used to build the pages by default => you need to tell Next when to re-fetch data: `revalidatePath(/meals)` => refreshes cache.
-
-#### Dynamic data
-`export async function generateMetadata()`
+Showing active links: `usePathname` hook, which returns the current link's address.
 
 
 
-### [Error: ENOSPC: System limit for number of file watchers reached angular](https://stackoverflow.com/questions/65300153/error-enospc-system-limit-for-number-of-file-watchers-reached-angular)
-
-The ESLint extension in VSCode watches all the files in node_modules by default, hitting the limit of files you can watch on Ubuntu (65536).
 
 #### Streaming
 [Tutorial source](https://www.freecodecamp.org/news/the-nextjs-15-streaming-handbook/)
