@@ -122,7 +122,25 @@ When you type "bla" + update params =>
 
 Can use `use-debounce` library, e.g: `useDebouncedCallback`
 
+#### Server actions
+React Server Actions (RSAs):
+- run async code directly on the server => no need for API endpoints;
+- can be invoked from Client or Server components;
+- extra features: input checks, error message hashing, host restrictions, encrypted closures;
 
+e.g: `action` attribute in `<form>` elements => action will automatically receive the `FormData` object (https://developer.mozilla.org/en-US/docs/Web/API/FormData);
+
+When you want to refresh data, need to take into account the client-side router cache (stores route segments in user's browser). Trigger a refresh + new request with `revalidatePath`.
+
+e.g: `revalidatePath('/dashboard/invoices')`
+
+#### Dynamic route segment
+e.g: `[id]`
+
+#### bind()
+`() => deleteInvoice(id)` -> cannot serialize to HTML
+`deleteInvoice.bind(null, id)` -> can serialize to HTML
+RSAs cannot 
 
 
 
