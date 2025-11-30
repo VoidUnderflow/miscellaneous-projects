@@ -142,6 +142,29 @@ e.g: `[id]`
 `deleteInvoice.bind(null, id)` -> can serialize to HTML
 RSAs cannot 
 
+#### Errors
+Of course, the classic `try/catch`.
+If something slips through though, good idea to have an `error.tsx` fallback. It defined a UI boundary for a route segment == catch-all for unexpected errors => fallback UI.
+
+The component in `error.tsx` will receive the error and a reset function as parameters. The reset function will try to re-render the route segment.
+
+**Trying to fetch a resource that doesn't exist:** `not-found.tsx` is what gets shown when you trigger the `notFound()` function.
+
+#### Accessibility
+`eslint-plugin-jsx-a11y`: include `"lint": "next lint"` under scripts -> `pnpm lint`
+
+#### Form validation
+##### Client-side
+Simple way: add `required` attribute to the `<input>` and `<select>` elements in the form.
+
+##### Server-side
+Benefits:
+- Ensure data is in the expected format before sending it to the DB
+- Reduce the risk of malicious users bypass client-side validation (tbh, never trust client-side validation...)
+- Have one source of truth for what is considered valid data
+`useActionState` => will need to convert form to a client component;
+
+
 
 
 
