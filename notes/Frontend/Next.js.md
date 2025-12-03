@@ -164,9 +164,51 @@ Benefits:
 - Have one source of truth for what is considered valid data
 `useActionState` => will need to convert form to a client component;
 
+#### Authentication
+https://authjs.dev/reference/nextjs (next-auth)
 
+Example config (root `auth.config.ts`, imported in `proxy.ts`):
+```ts
+export const authConfig = {
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+      if (isOnDashboard) {
+        if (isLoggedIn) return true;
+        return false;
+      } else if (isLoggedIn) {
+        return Response.redirect(new URL("/dashboard", nextUrl));
+      }
+      return true;
+    },
+  },
+  providers: [],
+} satisfies NextAuthConfig;
+```
+`authorized` callback:
+- checks if request is authorized to access a page, called before the request is completed; 
+- receives an object with the `auth` and `request` properties.
+	- `auth` = user's session;
+	- `request` = incoming req;
+- `providers`: array which contains different login options;
 
+##### Sign In / Sign Out
+- `signIn(provider, formData)` = trigger authentication with specified provider
+- `signOut({ redirectTo })` = end session + redirect
+- Both can be called from server actions
 
+##### Auth Errors
+- `AuthError` = base class for auth errors; check `error.type` for specifics
+- **Must re-throw non-auth errors** - NextAuth uses thrown redirects internally
 
-
+##### Form + Server Action Integration
+- `useActionState(action, initialState)` → `[state, formAction, isPending]`
+  - `state` = return value from last action call (e.g., error message)
+  - `formAction` = pass to `<form action={...}>`
+  - `isPending` = loading state during submission
+- Hidden inputs pass extra data to server actions (e.g., redirect destination)
 
