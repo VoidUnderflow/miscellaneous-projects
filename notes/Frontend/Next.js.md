@@ -212,3 +212,34 @@ export const authConfig = {
   - `isPending` = loading state during submission
 - Hidden inputs pass extra data to server actions (e.g., redirect destination)
 
+# SEO
+Notes from the official tutorial: https://nextjs.org/learn/seo/importance-of-seo
+
+Crawler refresher: Find URL (user search, links between websites, XML sitemaps) -> Add to crawl queue -> HTTP request (200: crawls, 30x: follows redirect, etc.) -> Render queue -> Indexed or not.
+
+Should be identified by the `User-Agent` header.
+
+`robots.txt`: tells crawlers which pages/files crawler can or can't request;
+
+## XML sitemap
+When to use:
+- large site;
+- archive of pages which are not well-connected to the rest of the website;
+- new site + few external links to it;
+- a lot of video/images;
+Should be dynamically updated as the site changes.
+Might be an interesting exercise to write one for your website.
+
+## Meta robot tags
+Tags + `robots.txt` are directives and will always be obeyed.
+Common tag: `<meta name="robots" content="noindex,nofollow"/>`:
+- `noindex` -> don't show in search results;
+- `nofollow` -> don't follow the links on this page;
+Put tags in `<Head>`.
+
+#### Google tags
+- `nositelinkssearchbox` -> do not show site-specific Google search box;
+- `notranslate` -> tell Google not to provide a translation for this page;
+
+#### Canonical tags
+`<link rel="canonical" href="blabla.com>"` -> use it when there are multiple links pointing to the same page / information;
