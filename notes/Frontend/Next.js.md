@@ -243,3 +243,43 @@ Put tags in `<Head>`.
 
 #### Canonical tags
 `<link rel="canonical" href="blabla.com>"` -> use it when there are multiple links pointing to the same page / information;
+
+## Rendering
+- SSG (static site generation) = HTML is generated at build time, best for SEO;
+- SSR (server-side rendering) = HTML generated at request time, dynamic pages, good for SEO;
+- ISR (incremental static regeneration) = only generate some pages statically;
+- CSR (client side rendering) = website entirely rendered in the browser with JS, not recommended for SEO; good for dashboards, account pages, etc.;
+
+## URL structure
+- Semantic
+- Logical patterns + consistent
+- Keyword focused
+- Not parameter based
+
+## Metadata
+- Title -> most important for SEO (what the page is about);
+- Description -> not important for Google SEO;
+- Open Graph tags -> good for when links are shared!! sets title, description, image in the link to the page;
+- JSON-LD = JSON + extra context as defined in `schema.org`;
+```json
+  {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mihai",
+  "url": "https://example.com"
+}
+```
+
+## On page SEO
+- Headings: what the page is about (d'oh)
+- Internal links (blog can be a hub, a resource to other resources); use `next/link`;
+
+## Web vitals
+https://web.dev/articles/vitals
+Would be useful to benchmark your website - good feedback.
+Already went over those in another Next optimisation tutorial, but in short:
+- LCP = time for the largest element to become visible;
+- FID = first input delay;
+- CLS = cumulative layout shift
+Use Lighthouse, basically: https://developer.chrome.com/docs/lighthouse/overview/
+
