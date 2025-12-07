@@ -283,3 +283,24 @@ Already went over those in another Next optimisation tutorial, but in short:
 - CLS = cumulative layout shift
 Use Lighthouse, basically: https://developer.chrome.com/docs/lighthouse/overview/
 
+## Dynamic imports
+Can import packages dynamically although it's not clear what the advantages are. I guess you just attach it to the component that needs it and the rest of the page loads faster?
+
+Can also import components dynamically:
+```tsx
+const CodeSampleModal = dynamic(() => import('../components/CodeSampleModal'), {
+  ssr: false,
+});
+```
+The component code will be requested when it's used.
+
+## Third-party scripts
+https://nextjs.org/docs/app/api-reference/components/script
+
+## Monitoring performance post-deployment
+https://vercel.com/products/observability
+https://nextjs.org/docs/pages/guides/analytics
+https://pagespeed.web.dev/?utm_source=psi&utm_medium=redirect
+https://developer.chrome.com/docs/crux/
+https://web.dev/articles/tbt
+
