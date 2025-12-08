@@ -94,6 +94,15 @@ Regexp + very magic mode + replace all repeated words:
 `:%s/\v(\w+)\s+\1/\1/gc`
 Without the g, you would remove only the first occurrence on each line.
 
+### Deleting chunks
+`diw` = delete inside word;
+`daw` = delete around word (grabs spaces around too);
+`ciw, caw` = change inside/around word;
+`dis, das` = inside sentence;
+`dip, dap, cip, cap` = same, for current paragraph;
+`di"`, `di(`, `di[`, `di{`, `di'`
+
+
 
 
 
