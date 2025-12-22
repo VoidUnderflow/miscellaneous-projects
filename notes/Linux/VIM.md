@@ -33,6 +33,8 @@ Really useful for quickly deleting things, e.g: `dt)` or `dt"` then `d;` or `d,`
 `{` = previous paragraph
 `}` = next paragraph
 
+`]}` or `[{` = go to next `{` or `}`, respectively;
+
 ## Vimtutor
 ### Insert / append
 `i` = insert here
@@ -101,6 +103,8 @@ Without the g, you would remove only the first occurrence on each line.
 `dis, das` = inside sentence;
 `dip, dap, cip, cap` = same, for current paragraph;
 `di"`, `di(`, `di[`, `di{`, `di'`
+### Select whole block
+`va{`
 
 
 
