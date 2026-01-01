@@ -6,7 +6,6 @@ A repo with code from various tutorials, online courses, university assignments,
 
 - [**flask_exploration**](/flask_exploration/) - Going through Flask's official tutorial.
 - [**java_spring_exploration**](/java_spring_exploration/) - Basics of Java Spring, covering Hibernate, MVC, Thymeleaf, and JPA.
-- [**dotnet_exploration**](/dotnet_exploration/) - Simple REST API with ASP.NET Core.
 - [**express_exploration**](/express_exploration/) - Basic REST API with Express.
 - [**electron_exploration**](/electron_exploration/) - Some very simple Electron apps.
 - [**nginx_exploration**](/nginx_exploration/) - Doing the official Nginx tutorial / workshop.
