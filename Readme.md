@@ -25,6 +25,7 @@ A repo with code from various tutorials, online courses, university assignments,
 - [**invisible_git_diffs**](/invisible_git_diffs_attempts/) - Trying to sneak in hidden characters that wouldn't get picked by GitHub's diff viewer.
 - [**mcp_exploration**](/mcp_exploration/) - Coding a simple MCP server in Python.
 - [**powerpoint_replacements**](/powerpoint_replacements_exploration/) - Trying out different Powerpoint replacements. I'll stick with Google Slides...
+- [**node_exploration**](/node_exploration/) - Node.js refresher
 
 ### Frontend
 
