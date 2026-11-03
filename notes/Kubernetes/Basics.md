@@ -50,3 +50,15 @@ If I understand it correctly, the control plane can have multiple nodes as well.
 	- same as kube-scheduler in terms of one per node...
 - cloud-controller-manager: 
 	- embeds cloud-specific controller logic;
+
+#### Node components
+- kubelet:
+	- makes sure containers are running in a pod (respecting "PodSpecs")
+- kube-proxy:
+	- maintains network rules on nodes -> communication within and outside cluster;
+	- not needed if using a network plugin;
+- container runtime: CRI-O, containerd, Docker.
+
+#### Addons
+Must haves: DNS, dashboard;
+Others: Container resource monitoring, cluster-level logging (where does Grafana come in?), network plugins.
